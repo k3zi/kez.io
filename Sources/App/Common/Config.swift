@@ -14,5 +14,6 @@ struct Config: Decodable {
     private init() { fatalError() }
 
     let repoScanDirectory: URL
+    let githubWebhookSecret: String
 
 }

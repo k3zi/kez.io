@@ -25,6 +25,8 @@ struct GitController: RouteCollection {
             }
 
             let mac = HMAC<SHA256>.authenticationCode(for: bodyData, using: SymmetricKey(data: secret))
+
+            req.logger.info("webhook → checking \(mac.hex) == \(githubSignature)")
             guard mac.hex == githubSignature else {
                 return .init(status: .forbidden)
             }

@@ -11,7 +11,7 @@ struct GitController: RouteCollection {
             req.logger.debug("git: pulling into \(object.repository.name) (\(appDirectoryURL))")
             shell(currentDirectoryURL: appDirectoryURL, executableURL: .init(fileURLWithPath: "/usr/bin/git"), args: "pull")
             req.logger.debug("git: pulled into \(object.repository.name)")
-            shell(currentDirectoryURL: appDirectory, executableURL: .init(fileURLWithPath: "/usr/bin/systemctl"), args: "restart", "--user", object.repository.name)
+            shell(currentDirectoryURL: appDirectoryURL, executableURL: .init(fileURLWithPath: "/usr/bin/systemctl"), args: "restart", "--user", object.repository.name)
             return Response(status: .ok)
         }
     }

@@ -2,6 +2,7 @@ import Fluent
 import Vapor
 
 struct TodoController: RouteCollection {
+
     func boot(routes: RoutesBuilder) throws {
         let todos = routes.grouped("todos")
         todos.get(use: index)
@@ -26,4 +27,5 @@ struct TodoController: RouteCollection {
             .flatMap { $0.delete(on: req.db) }
             .transform(to: .ok)
     }
+
 }

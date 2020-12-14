@@ -5,7 +5,8 @@ import Vapor
 
 // configures your application
 public func configure(_ app: Application) throws {
-    app.http.server.configuration.port = Environment.get("PORT").flatMap(Int.init) ?? 1270
+
+    app.http.server.configuration.port = Environment.get("PORT").flatMap(Int.init(_:)) ?? 1270
     app.middleware.use(FileMiddleware(publicDirectory: app.directory.publicDirectory))
 
     app.databases.use(.postgres(
@@ -20,6 +21,5 @@ public func configure(_ app: Application) throws {
 
     app.views.use(.leaf)
 
-    // register routes
     try routes(app)
 }

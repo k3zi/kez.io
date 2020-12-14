@@ -6,7 +6,7 @@ func routes(_ app: Application) throws {
         return req.view.render("index", ["title": "Hello Vapor!"])
     }
 
-    app.get("hello") { req -> String in
+    app.get("git") { req -> String in
         return "Hello, world!"
     }
 

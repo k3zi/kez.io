@@ -15,7 +15,7 @@ struct GitController: RouteCollection {
             let bodyData = Data(buffer: bodyBuffer)
 
             // Get signature of body.
-            guard let githubSignature = req.headers.first(name: "X-Hub-Signature-256") else {
+            guard let githubSignature = req.headers.first(name: "X-Hub-Signature-256")?.dropFirst("sha256=".count) else {
                 return .init(status: .badRequest)
             }
 
